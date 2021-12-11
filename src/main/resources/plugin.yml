@@ -1,0 +1,9 @@
+name: SimpleDeathTax
+version: '${project.version}'
+main: ca.munchdev.simpledeathtax.SimpleDeathTax
+api-version: 1.18
+authors: [ Munch42 ]
+description: This is a plugin which will tax players on Death at a certain specified amount or percentage.
+website: https://munchdev.ca
+
+depend: [ Vault ]

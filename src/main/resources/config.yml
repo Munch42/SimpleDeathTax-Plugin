@@ -1,0 +1,46 @@
+# SimpleDeathTax
+# Author: Munch42
+# Inspired by: https://www.spigotmc.org/resources/deathtax.48585/
+# This is a simpler idea of that plugin with all my original code and which I created for use on
+# my private server but decided to release it to the public in case anyone wanted a more up to date
+# way to tax players on death since that plugin only supports officially up to 1.14.
+
+# This category tells the server whether to give the money that is taxed to the killer or to just remove the money altogether.
+# You can also set a rate at which, if a player killed someone, they get paid this amount instead of the permission amount,
+# but if they died "naturally," they will be taxed the normal amount in the deathTaxes section.
+# You can set this to KILLER or SERVER. KILLER to give the taxes to the killer, and SERVER to give the money to the server at the normal rate below.
+taxReceiver: KILLER
+# This is the percent that the killer will receive from their victim. This can be either a float or an integer (decimal or no decimal)
+# If this is set to -1 then it will just give the killer the normal permission tax rate.
+taxReceivedMoney: 1.5
+
+# This is the message that is sent to the player who died, telling them how much they lost. If you want to disable it, set it to ""
+# You can use %amount% in place of the amount of money that they lost. You can also use colour codes with the & symbol in front.
+deathMoneyLostMessage: "&4&lYou died and lost %amount% dollars."
+
+# Die normally, lose 2.5% or so. Die to player, lose 1.5% and they get the 1.5%
+
+# This section below determines the percentages that players will be taxed upon death. These values will only be used for "natural" or in
+# other words non-pvp deaths unless the "taxReceivedMoney" section above is set to -1 or the taxReceiver is SERVER.
+# Format:
+# deathTaxes: DO NOT CHANGE THIS SETTING. This is the main node of the section.
+#   permission: This is the permission node needed to redeem the rewards within this tree on the days specified. For example, if you set this to "vip;special" they would need the vip.special node. You must change the "." between node sections to a ; for this to work. vip.special would become vip;special
+#     weight: This should be set to an integer number representing the priority of the tax permission. Only use this once per permission. The higher the number, the higher the tax settings priority. If one is a 2 and the other is a 3 a player with both perms will be taxed at the 3 weighted tax rate.
+#     taxType: This should be either PERCENTAGE or AMOUNT to specify which way you want the plugin to tax players on their deaths. If this is AMOUNT, you will put in a fixed amount that is removed upon death. If this is PERCENTAGE, you put in a percentage which is removed upon death.
+#     taxValue: This should be a float or integer (either with or without decimal places) value that is the actual amount that is taxed. If the taxType is set to AMOUNT, and you put a 5 here, the player will be taxed 5 units of your economy upon death. If taxType is set to PERCENTAGE, and you put the 5 here, 5% of their balance will be removed upon their death.
+
+deathTaxes:
+  deathtax;default:
+    weight: 0
+    taxType: PERCENTAGE
+    taxValue: 2.5
+
+  deathtax;taxes;fixed:
+    weight: 3
+    taxType: AMOUNT
+    taxValue: 150
+
+  deathtax;bypass:
+    weight: 50
+    taxType: PERCENTAGE
+    taxValue: 0
